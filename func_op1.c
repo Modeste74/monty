@@ -23,11 +23,7 @@ void push(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	if (sscanf(data, " %d", &value) != 1)
-	{
-		fprintf(stderr, "L%u: usage: push integer\n", line_number);
-		exit(EXIT_FAILURE);
-	}
+	value = atoi(data);
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
 	{
