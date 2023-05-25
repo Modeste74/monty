@@ -38,6 +38,7 @@ void execute_opcode(stack_t **stack, char *opcode, unsigned int line_number)
 		{"queue", queue_mode},
 		{NULL, NULL}
 	};
+
 	for (i = 0; instructions[i].opcode != NULL; i++)
 	{
 		if (strcmp(opcode, instructions[i].opcode) == 0)
@@ -50,7 +51,6 @@ void execute_opcode(stack_t **stack, char *opcode, unsigned int line_number)
 	free_stack(*stack);
 	exit(EXIT_FAILURE);
 }
-stack_t *stack = NULL;
 ssize_t getline(char **lineptr, size_t *n, FILE *stream);
 /**
  * main - entry point
@@ -66,6 +66,7 @@ int main(int argc, char **argv)
 	unsigned int line_number = 0;
 	size_t line_size = 0;
 	ssize_t read_f;
+	stack_t *stack = NULL;
 
 	if (argc != 2)
 	{

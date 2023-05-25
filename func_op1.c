@@ -3,27 +3,31 @@
 /**
  * push - used to add an element in to the stack
  * @stack: pointer to the pointer of the head
- * @m: value of the element
+ * @line_number: no of lines
  *
  * Return: void
  */
 void push(stack_t **stack, unsigned int line_number)
 {
 	int value;
-	char *value_str = strtok(NULL, " \n\t\r");
+	char *data = strtok(NULL, "\n\t\r ");
 	stack_t *new;
 
-	if (value_str == NULL)
+	if (data == NULL)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	if (!isdigit(value_str[0]) && value_str[0] != '-' && value_str[0] != '+')
+	if (!isdigit(data[0]) && data[0] != '-' && data[0] != '+')
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	value = atoi(value_str);
+	if (sscanf(data, " %d", &value) != 1)
+	{
+		fprintf(stderr, "L%u: usage: push integer\n", line_number);
+		exit(EXIT_FAILURE);
+	}
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
 	{
